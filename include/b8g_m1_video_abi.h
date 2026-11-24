@@ -29,8 +29,8 @@ typedef enum b8g_m1_codec_id {
 /**
  * 64-byte aligned B8G_ARENA_V1 header for zero-copy shared-memory arenas.
  */
-typedef struct alignas(64) b8g_arena_header_v1 {
-    uint32_t magic;            /* Must equal B8G_ABI_MAGIC_V3 (0x33564742) */
+typedef struct b8g_arena_header_v1 {
+    alignas(64) uint32_t magic;/* Must equal B8G_ABI_MAGIC_V3 (0x33564742) */
     uint32_t version;          /* Must equal B8G_ARENA_VERSION_V1 (1)      */
     uint32_t flags;            /* Arena capability flags                   */
     uint32_t reserved0;        /* Zero-initialized padding                 */
@@ -46,8 +46,8 @@ typedef struct alignas(64) b8g_arena_header_v1 {
 /**
  * 64-byte aligned zero-copy H.264/HEVC/VP9 AVD/VA-API frame ring slot descriptor.
  */
-typedef struct alignas(64) b8g_m1_video_frame_slot_v1 {
-    uint64_t pts_ns;           /* Presentation timestamp in nanoseconds    */
+typedef struct b8g_m1_video_frame_slot_v1 {
+    alignas(64) uint64_t pts_ns;/* Presentation timestamp in nanoseconds   */
     uint64_t dmabuf_offset;    /* Offset within DMA-BUF or B8G_ARENA_V1    */
     int32_t  dmabuf_fd;        /* Exported PRIME DMA-BUF fd (-1 if inline) */
     uint32_t va_surface_id;    /* Underlying libva VASurfaceID             */
@@ -65,8 +65,8 @@ typedef struct alignas(64) b8g_m1_video_frame_slot_v1 {
 /**
  * Combined 64-byte aligned AVD/VA-API zero-copy frame ring descriptor.
  */
-typedef struct alignas(64) b8g_m1_video_ring_v1 {
-    b8g_arena_header_v1_t header;
+typedef struct b8g_m1_video_ring_v1 {
+    alignas(64) b8g_arena_header_v1_t header;
     uint32_t active_codec;     /* b8g_m1_codec_id_t                        */
     uint32_t max_width;        /* Configured maximum coded width           */
     uint32_t max_height;       /* Configured maximum coded height          */
