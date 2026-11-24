@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: GPL-2.0-only
+# Warn if a package update replaces the locally fixed AVD VA-API driver, or if
+# a libva update needs the driver rebuilt. See https://github.com/iconidentify/omarchy-m1-video
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Package
+Target = libva-v4l2_request-avd
+Target = libva
+
+[Action]
+Description = Checking AVD VA-API driver for local fixes...
+When = PostTransaction
+Exec = /usr/local/sbin/apple-avd-rebuild --check-libva

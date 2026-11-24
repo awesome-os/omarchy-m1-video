@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+- name: Read security reporting instructions
+  url: https://github.com/iconidentify/omarchy-m1-video/blob/main/SECURITY.md
+  about: Check private reporting availability before sharing vulnerability details.
+- name: Check repository ownership
+  url: https://github.com/iconidentify/omarchy-m1-video/blob/main/CONTRIBUTING.md
+  about: Choose the driver or companion repository for your report.
+- name: Find a bounded contribution
+  url: https://github.com/iconidentify/omarchy-m1-video/blob/main/docs/CONTRIBUTOR_START.md
+  about: Choose a ready offline task and read the shared claim workflow.

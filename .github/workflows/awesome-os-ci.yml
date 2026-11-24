@@ -1,0 +1,50 @@
+name: Awesome-OS CI
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  syntax-check:
+    name: Validate Scripts, Layout & B8G ABI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify required files
+        run: |
+          test -f LICENSE
+          test -f README.md
+          test -f AWESOME-OS-INTEGRATION.md
+          test -f install.sh
+          test -f uninstall.sh
+          test -f include/b8g_m1_video_abi.h
+
+      - name: Compile-check B8G ABI v3 C11 header
+        run: |
+          gcc -std=c11 -Wall -Wextra -fsyntax-only include/b8g_m1_video_abi.h
+
+      - name: Syntax-check shell scripts
+        run: |
+          set -euo pipefail
+          mapfile -d '' sh_files < <(find . -type f -name '*.sh' -not -path './.git/*' -print0)
+          echo "Checking ${#sh_files[@]} shell script(s)..."
+          for f in "${sh_files[@]}"; do
+            bash -n "$f"
+          done
+
+      - name: Syntax-check Python scripts
+        run: |
+          set -euo pipefail
+          mapfile -d '' py_files < <(find . -type f -name '*.py' -not -path './.git/*' -print0)
+          echo "Checking ${#py_files[@]} Python script(s)..."
+          for f in "${py_files[@]}"; do
+            python3 -m py_compile "$f"
+          done
