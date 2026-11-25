@@ -279,3 +279,13 @@ The kernel patches modify files of the Linux kernel's AVD driver, which are GPL-
 distributed under GPL-2.0-only; that includes patches 0001-0004 by Aaron (aquarat). The scripts,
 hooks and service are GPL-2.0-only as well. See `LICENSE`. The VA-API driver is GPL-3.0-or-later,
 in its own repository.
+
+## Quick Install & Run (Windows / Linux / macOS)
+
+```sh
+# Install / hydrate from v11 CAS via holo-pm
+holo-pm install repository://github.com/awesome-os/omarchy-m1-video@main
+
+# Or project & run directly via holo-project (0-byte hardlink)
+holo-project "project://cpp/omarchy-m1-video?from=repository://github.com/awesome-os/omarchy-m1-video@main"
+```
